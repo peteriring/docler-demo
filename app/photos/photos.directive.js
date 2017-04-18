@@ -27,12 +27,12 @@ export class SwipeListener {
   }
 
   start(event) {
-    event.preventDefault();
     const { type, clientX, clientY } = event;
     const pos = {
       x: (type === 'touchstart') ? event.originalEvent.touches[0].clientX : clientX,
       y: (type === 'touchstart') ? event.originalEvent.touches[0].clientY : clientY,
     };
+    if (type !== 'touchstart') event.preventDefault();
     this.before.x = pos.x;
     this.before.y = pos.y;
     this.before.type = type;
